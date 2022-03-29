@@ -11,6 +11,11 @@ const AnalogClock = props => {
         <div className="hoursWrap" style={{transform: `rotate(${props.hours}deg)`}}>
             <div className="hours"/>
         </div>
+
+        <div className="segment first"></div>
+        <div className="segment second"></div>
+        <div className="mask first"></div>
+        <div className="mask second"></div>
     </div>
 }
 

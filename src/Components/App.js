@@ -1,15 +1,36 @@
 import React from "react";
 import Clock from "./Clock/Clock";
 
-const App = (props) => {
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            timezones: [],
+            isFetching: false
+        }
+    }
 
-    let clocks = props.data.map(i =>{
-        return <Clock timezone = {i}/>
-    })
-    
-    return <div>
-        {clocks}
-    </div>
+    //refactor
+    componentDidMount () {
+        this.setState({isFetching: true})
+        fetch('./src/json/timezones.json')
+        .then(r => r.json())
+        .then(r => {
+            this.setState({timezones: [...r]})
+            this.setState({isFetching: false})
+        })
+    }
+
+    render() {
+        return <div>
+            {this.state.isFetching ? <div>Is fetching</div> : ''}
+            {
+                this.state.timezones.map(i =>{
+                return <Clock timezone = {i}/>
+                    })
+            }
+        </div>
+    }
 }
 
 export default App

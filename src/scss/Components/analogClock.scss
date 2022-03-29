@@ -1,6 +1,8 @@
+$multiplyer: 2;
+
 .analogClock {
-    width: 100px;
-    height: 100px;
+    width: 100px * $multiplyer;
+    height: 100px * $multiplyer;
     background-color: #ccc;
     position: relative;
     border-radius: 300px;
@@ -13,13 +15,14 @@
         left: 0;
         right: 0;
         margin: auto;
+        z-index: 100;
 
         .seconds {
-            width: 1px;
-            height: 70px;
+            width: 1px * $multiplyer;
+            height: 70px * $multiplyer;
             background-color: #ff2f2f;
             position: absolute;
-            bottom: 25px;
+            bottom: 25px * $multiplyer;
             left: 0;
             right: 0;
             margin: auto;
@@ -33,13 +36,14 @@
         left: 0;
         right: 0;
         margin: auto;
+        z-index: 100;
 
         .mins {
-            width: 1px;
-            height: 50px;
+            width: 1px * $multiplyer;
+            height: 50px * $multiplyer;
             background-color: #1d1d1d;
             position: absolute;
-            bottom: 40px;
+            bottom: 40px * $multiplyer;
             left: 0;
             right: 0;
             margin: auto;
@@ -53,16 +57,73 @@
         left: 0;
         right: 0;
         margin: auto;
+        z-index: 100;
 
         .hours {
-            width: 3px;
-            height: 36px;
+            width: 3px * $multiplyer;
+            height: 32px * $multiplyer;
             background-color: #1d1d1d;
             position: absolute;
-            bottom: 45px;
+            bottom: 45px * $multiplyer;
             left: 0;
             right: 0;
             margin: auto;
         }
+    }
+
+    .segment {
+        width: 2px * $multiplyer;
+        height: 90%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: green;
+        z-index: 98;
+
+        &:before,&:after {
+            content: '';
+            display: block;
+            background-color: yellowgreen;
+            width: 1px * $multiplyer;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 96;
+        }
+
+        &:before {
+            transform: rotate(-30deg);
+        }
+
+        &:after {
+            transform: rotate(30deg);
+        }
+
+        &.second{
+            transform: rotate(90deg);
+        }
+    }
+
+    .mask {
+        display: block;
+        width: 70%;
+        height: 70%;
+        background-color: #ccc;
+        border-radius: 100px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 99;
+
     }
 }
