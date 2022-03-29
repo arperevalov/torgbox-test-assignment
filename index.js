@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./src/Components/App";
 import data from './src/json/timezones.json'
 
+import './src/scss/index.scss'
+
 ReactDOM.render(
 <App data = {data}/>,
 document.getElementById('root')
