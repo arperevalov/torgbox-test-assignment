@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./src/Components/App";
-import data from './src/json/timezones.json'
+import { Provider } from "react-redux";
+import App from "./App/App";
+import store from "./App/Redux/store";
 
 import './src/scss/index.scss'
 
 ReactDOM.render(
-<App data = {data}/>,
+<Provider store={store}>
+    <App />
+</Provider>,
 document.getElementById('root')
 );
