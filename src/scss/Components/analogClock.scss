@@ -3,7 +3,8 @@ $multiplyer: 2;
 .analogClock {
     width: 100px * $multiplyer;
     height: 100px * $multiplyer;
-    background-color: #ccc;
+    background-color: #fff;
+    border: 2px * $multiplyer solid #1d1d1d;
     position: relative;
     border-radius: 300px;
 
@@ -18,11 +19,10 @@ $multiplyer: 2;
         z-index: 100;
 
         .seconds {
-            width: 1px * $multiplyer;
-            height: 70px * $multiplyer;
-            background-color: #ff2f2f;
+            width: 6px * $multiplyer;
+            height: 64px * $multiplyer;
             position: absolute;
-            bottom: 25px * $multiplyer;
+            bottom: 5px * $multiplyer;
             left: 0;
             right: 0;
             margin: auto;
@@ -60,11 +60,11 @@ $multiplyer: 2;
         z-index: 100;
 
         .hours {
-            width: 3px * $multiplyer;
+            width: 2px * $multiplyer;
             height: 32px * $multiplyer;
             background-color: #1d1d1d;
             position: absolute;
-            bottom: 45px * $multiplyer;
+            bottom: 40px * $multiplyer;
             left: 0;
             right: 0;
             margin: auto;
@@ -80,13 +80,13 @@ $multiplyer: 2;
         top: 0;
         bottom: 0;
         margin: auto;
-        background-color: green;
+        background-color: #1d1d1d;
         z-index: 98;
 
         &:before,&:after {
             content: '';
             display: block;
-            background-color: yellowgreen;
+            background-color: #1d1d1d;
             width: 1px * $multiplyer;
             height: 100%;
             position: absolute;
@@ -113,9 +113,9 @@ $multiplyer: 2;
 
     .mask {
         display: block;
-        width: 70%;
-        height: 70%;
-        background-color: #ccc;
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
         border-radius: 100px;
         position: absolute;
         left: 0;
@@ -125,5 +125,18 @@ $multiplyer: 2;
         margin: auto;
         z-index: 99;
 
+    }
+
+    .pin {
+        display: block;
+        width: 3% * $multiplyer;
+        height: 3% * $multiplyer;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 100;
     }
 }

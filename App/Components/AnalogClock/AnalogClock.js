@@ -1,4 +1,6 @@
 import React from "react";
+import secondsArrow from './../../../src/img/secondsArrow.svg';
+import clockPin from './../../../src/img/clockPin.svg'
 
 const AnalogClock = props => {
 
@@ -8,7 +10,7 @@ const AnalogClock = props => {
 
     return <div className="analogClock">
         <div className="secondsWrap" style={{transform: `rotate(${seconds}deg)`}}>
-            <div className="seconds"/>
+            <img src={secondsArrow} className="seconds"/>
         </div>
         <div className="minsWrap" style={{transform: `rotate(${minutes}deg)`}}>
             <div className="mins"/>
@@ -16,6 +18,8 @@ const AnalogClock = props => {
         <div className="hoursWrap" style={{transform: `rotate(${hours}deg)`}}>
             <div className="hours"/>
         </div>
+
+        <img src={clockPin} className="pin"/>
 
         <div className="segment first"></div>
         <div className="segment second"></div>
