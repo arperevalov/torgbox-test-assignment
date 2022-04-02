@@ -1,6 +1,6 @@
 import React from "react";
-import DigitalClock from "../DigitalClock/DigitalClock";
-import AnalogClock from '../AnalogClock/AnalogClock';
+import DigitalClock from "./DigitalClock/DigitalClock";
+import AnalogClock from './AnalogClock/AnalogClock';
 import Select from "../Select";
 
 class Clock extends React.Component {
@@ -46,7 +46,7 @@ class Clock extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className="clock">
             <AnalogClock time={this.state.time}/>
             <DigitalClock time={this.state.time}/>
             <Select timezones={this.props.timezones} changeTimezone={this.changeTimezone} timezone={this.state.timezone}/>

@@ -24,10 +24,10 @@ class ClockAPI extends React.Component {
     }
 
     render() {
-        return <>
+        return <div className="clock-container">
         { this.props.isFetching ? 'Is Fetching' : ''}
-        { Array.from({length: this.props.clockQuantity}, () => <Clock timezones={this.props.timezones} />) }
-        </>
+        { Array.from({length: this.props.clockQuantity}, (i, index) => <Clock key={index} timezones={this.props.timezones} />) }
+        </div>
     }
 }
 

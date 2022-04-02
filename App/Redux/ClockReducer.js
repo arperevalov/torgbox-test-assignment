@@ -3,7 +3,7 @@ UPDATE_TIME = 'UPDATE_TIME',
 SET_FETCH = 'SET_FETCH'
 
 const DefaultState = {
-    quantity: 24,
+    quantity: 2,
     timezones: [],
     isFetching: false
 }

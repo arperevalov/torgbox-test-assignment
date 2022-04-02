@@ -1,12 +1,12 @@
 import React from "react";
-import secondsArrow from './../../../src/img/secondsArrow.svg';
-import clockPin from './../../../src/img/clockPin.svg'
+import secondsArrow from './../../../../src/img/secondsArrow.svg';
+import clockPin from './../../../../src/img/clockPin.svg'
 
 const AnalogClock = props => {
 
-    let seconds = props.time.getSeconds()*6
+    let seconds = props.time.getSeconds()*6+180
     let minutes = props.time.getMinutes()*6
-    let hours = props.time.getHours()*15
+    let hours = props.time.getHours()*30
 
     return <div className="analogClock">
         <div className="secondsWrap" style={{transform: `rotate(${seconds}deg)`}}>

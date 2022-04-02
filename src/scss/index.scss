@@ -1,1 +1,14 @@
-@import './Components/analogClock.scss'
+@import './Components/clock.scss';
+@import './Components/analogClock.scss';
+@import './Components/select.scss';
+@import './fonts.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter';
+}

@@ -1,0 +1,13 @@
+.clock {
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+
+    &-container {
+        display: grid;
+        grid-template-columns:  repeat(auto-fill, 200px);
+        gap: 40px;
+        margin: 40px auto;
+        max-width: 1200px;
+    }
+}
