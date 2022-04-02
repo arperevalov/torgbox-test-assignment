@@ -1,0 +1,26 @@
+.preloader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $preloaderColor;
+    height: 2px;
+
+    animation: preloader 3s ease 1s infinite;
+}
+
+@keyframes preloader {
+    0% {
+        left: 0;
+        width: 0;
+    }
+
+    50% {
+        left: 35%;
+        width: 30%;
+      }
+
+    100% {
+        left: 100%;
+        width: 0%;
+    }
+}

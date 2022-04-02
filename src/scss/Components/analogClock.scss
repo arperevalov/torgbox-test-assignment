@@ -1,10 +1,8 @@
-$multiplyer: 2;
-
 .analogClock {
-    width: 100px * $multiplyer;
-    height: 100px * $multiplyer;
-    background-color: #fff;
-    border: 2px * $multiplyer solid #1d1d1d;
+    width: 200px * $clockSizeMultiplier;
+    height: 200px * $clockSizeMultiplier;
+    background-color: $clockBaseColor;
+    border: 4px * $clockSizeMultiplier solid $clockBorderColor;
     position: relative;
     border-radius: 300px;
 
@@ -19,10 +17,10 @@ $multiplyer: 2;
         z-index: 100;
 
         .seconds {
-            width: 6px * $multiplyer;
-            height: 64px * $multiplyer;
+            width: 12px * $clockSizeMultiplier;
+            height: 128px * $clockSizeMultiplier;
             position: absolute;
-            bottom: 5px * $multiplyer;
+            bottom: 10px * $clockSizeMultiplier;
             left: 0;
             right: 0;
             margin: auto;
@@ -37,13 +35,14 @@ $multiplyer: 2;
         right: 0;
         margin: auto;
         z-index: 100;
+        
 
         .mins {
-            width: 1px * $multiplyer;
-            height: 50px * $multiplyer;
-            background-color: #1d1d1d;
+            width: 2px * $clockSizeMultiplier;
+            height: $minuteArrowLength * $clockSizeMultiplier;
+            background-color: $clockArrowsColor;
             position: absolute;
-            bottom: 40px * $multiplyer;
+            bottom: 80px * $clockSizeMultiplier;
             left: 0;
             right: 0;
             margin: auto;
@@ -60,11 +59,11 @@ $multiplyer: 2;
         z-index: 100;
 
         .hours {
-            width: 2px * $multiplyer;
-            height: 32px * $multiplyer;
-            background-color: #1d1d1d;
+            width: 4px * $clockSizeMultiplier;
+            height: calc($minuteArrowLength / 2) * $clockSizeMultiplier;
+            background-color: $clockArrowsColor;
             position: absolute;
-            bottom: 40px * $multiplyer;
+            bottom: 80px * $clockSizeMultiplier;
             left: 0;
             right: 0;
             margin: auto;
@@ -72,7 +71,7 @@ $multiplyer: 2;
     }
 
     .segment {
-        width: 2px * $multiplyer;
+        width: 4px * $clockSizeMultiplier;
         height: 90%;
         position: absolute;
         left: 0;
@@ -80,14 +79,14 @@ $multiplyer: 2;
         top: 0;
         bottom: 0;
         margin: auto;
-        background-color: #1d1d1d;
+        background-color: $clockSegmentsColor;
         z-index: 98;
 
         &:before,&:after {
             content: '';
             display: block;
-            background-color: #1d1d1d;
-            width: 1px * $multiplyer;
+            background-color: $clockSegmentsColor;
+            width: 2px * $clockSizeMultiplier;
             height: 100%;
             position: absolute;
             left: 0;
@@ -113,10 +112,10 @@ $multiplyer: 2;
 
     .mask {
         display: block;
-        width: 80%;
-        height: 80%;
-        background-color: #fff;
-        border-radius: 100px;
+        width: 150px * $clockSizeMultiplier;
+        height: 150px * $clockSizeMultiplier;
+        background-color: $clockBaseColor;
+        border-radius: 100px * $clockSizeMultiplier;
         position: absolute;
         left: 0;
         right: 0;
@@ -129,8 +128,8 @@ $multiplyer: 2;
 
     .pin {
         display: block;
-        width: 3% * $multiplyer;
-        height: 3% * $multiplyer;
+        width: 6% * $clockSizeMultiplier;
+        height: 6% * $clockSizeMultiplier;
         position: absolute;
         left: 0;
         right: 0;

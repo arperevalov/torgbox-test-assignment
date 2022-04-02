@@ -3,7 +3,7 @@ import secondsArrow from './../../../../src/img/secondsArrow.svg';
 import clockPin from './../../../../src/img/clockPin.svg'
 
 const AnalogClock = props => {
-
+    
     let seconds = props.time.getSeconds()*6+180
     let minutes = props.time.getMinutes()*6
     let hours = props.time.getHours()*30
@@ -23,8 +23,7 @@ const AnalogClock = props => {
 
         <div className="segment first"></div>
         <div className="segment second"></div>
-        <div className="mask first"></div>
-        <div className="mask second"></div>
+        <div className="mask"></div>
     </div>
 }
 

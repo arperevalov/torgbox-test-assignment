@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Preloader from "../Preloader";
 import { updateTimezones, updateTime, setFetch } from './../../Redux/ClockReducer';
 import Clock from './Clock'
 
@@ -9,7 +10,15 @@ class ClockAPI extends React.Component {
         if (this.props.timezones.length === 0) {
             this.props.setFetch(true)
             fetch('./../src/json/timezones.json')
-            .then(r => r.json())
+            .then(r => r.json(), 
+            err => {
+                this.props.updateTimezones([{
+                    "timezone": "0",
+                    "name": "UTC±0:00"
+                  },])
+                this.props.setFetch(false)
+                throw new Error(err)
+            })
             .then(r => {
                 let arr = r.map(i => {
                     return {
@@ -25,7 +34,7 @@ class ClockAPI extends React.Component {
 
     render() {
         return <div className="clock-container">
-        { this.props.isFetching ? 'Is Fetching' : ''}
+        { !this.props.isFetching ? '' : <Preloader/>}
         { Array.from({length: this.props.clockQuantity}, (i, index) => <Clock key={index} timezones={this.props.timezones} />) }
         </div>
     }
@@ -35,14 +44,12 @@ const mapStateToProps = store => {
     return {
         clockQuantity: store.clockPage.quantity,
         timezones: store.clockPage.timezones,
-        time: store.clockPage.time,
         isFetching: store.clockPage.isFetching
     }
 }
 
 const ClockContainer = connect(mapStateToProps, {
     updateTimezones,
-    updateTime,
     setFetch
 })(ClockAPI)
 

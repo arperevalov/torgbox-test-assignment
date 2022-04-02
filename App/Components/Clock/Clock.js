@@ -7,24 +7,22 @@ class Clock extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            time: this.getTimeFromUTC(this.getDefaultTimezone()),
-            timezone: this.getDefaultTimezone()
+            timezone: this.getDefaultTimezone(),
+            time: this.getTimeFromUTC(this.getDefaultTimezone())
         }
     }
 
     getDefaultTimezone () {
-        let date = new Date
-        return date.getTimezoneOffset()/-60
+        return this.props.timezones.length > 0 ? this.props.timezones[0].timezone : 0
     }
 
-    getTimeFromUTC(timezone) {
-        if (typeof timezone != 'number') timezone = 0
-        let currentLocalTime = new Date()
-        let currentUTCTime = new Date(
+    getTimeFromUTC(currentTimezone) {
+        const currentLocalTime = new Date()
+        const currentUTCTime = new Date(
             currentLocalTime.getFullYear(),
             currentLocalTime.getUTCMonth(),
             currentLocalTime.getUTCDay(),
-            currentLocalTime.getUTCHours()+timezone,
+            currentLocalTime.getUTCHours()+currentTimezone,
             currentLocalTime.getUTCMinutes(),
             currentLocalTime.getUTCSeconds())
         return currentUTCTime
@@ -44,6 +42,12 @@ class Clock extends React.Component {
     componentDidMount() {
         this.updateTime()
     }
+
+    // static getDerivedStateFromProps(props, state){
+    //     return {
+    //         timezone: props.timezones.length > 0 ? props.timezones[0].timezone : 0
+    //     }
+    // }
 
     render() {
         return <div className="clock">
