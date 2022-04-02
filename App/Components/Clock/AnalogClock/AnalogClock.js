@@ -4,9 +4,9 @@ import clockPin from './../../../../src/img/clockPin.svg'
 
 const AnalogClock = props => {
     
-    let seconds = props.time.getSeconds()*6+180
-    let minutes = props.time.getMinutes()*6
-    let hours = props.time.getHours()*30
+    let seconds = props.time.getSeconds()*6+180,
+        minutes = props.time.getMinutes()*6,
+        hours = props.time.getHours()*30
 
     return <div className="analogClock">
         <div className="secondsWrap" style={{transform: `rotate(${seconds}deg)`}}>

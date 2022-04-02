@@ -2,18 +2,16 @@ import React from "react";
 import DigitalClock from "./DigitalClock/DigitalClock";
 import AnalogClock from './AnalogClock/AnalogClock';
 import Select from "../Select";
+import Preloader from "../Preloader";
 
 class Clock extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            timezone: this.getDefaultTimezone(),
-            time: this.getTimeFromUTC(this.getDefaultTimezone())
+            timezone: null,
+            time: null,
+            working: false
         }
-    }
-
-    getDefaultTimezone () {
-        return this.props.timezones.length > 0 ? this.props.timezones[0].timezone : 0
     }
 
     getTimeFromUTC(currentTimezone) {
@@ -39,17 +37,22 @@ class Clock extends React.Component {
         this.setState({timezone: inputTimezone})
     }
 
-    componentDidMount() {
-        this.updateTime()
+    componentDidUpdate() {
+        if (this.state.timezone === null && this.props.timezones.length !== 0) {
+            this.setState({timezone: this.props.timezones[0].timezone})
+        } 
+
+        if (this.state.timezone !== null && !this.state.working) {
+            this.updateTime()
+            this.setState({working: true})
+        }
     }
 
-    // static getDerivedStateFromProps(props, state){
-    //     return {
-    //         timezone: props.timezones.length > 0 ? props.timezones[0].timezone : 0
-    //     }
-    // }
-
     render() {
+        if (this.state.time === null) {
+            return <Preloader/>
+        }
+
         return <div className="clock">
             <AnalogClock time={this.state.time}/>
             <DigitalClock time={this.state.time}/>

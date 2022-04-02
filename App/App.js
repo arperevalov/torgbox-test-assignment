@@ -8,6 +8,7 @@ class App extends React.Component {
 
     render() {
         return <>
+            { !this.props.isFetching ? '' : <Preloader/>}
             <ClockContainer/>
         </>
     }
