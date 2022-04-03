@@ -48,7 +48,7 @@ const Select = props => {
                 return <option key={index} value={i.timezone} >{i.name}</option>})}
         </select>
         <div ref={customOptionsElement} className="selectCustom" aria-hidden={true}>
-            <div className="select" onClick={setDisplayOptionsState}>{customValue}
+            <div className={`select ${displayOptions ? 'active' : ''}`} onClick={setDisplayOptionsState}>{customValue}
             </div>
             <ul className={`options ${displayOptions ? 'active' : ''}`}>
                 {props.timezones.length === 0 ?  '' : props.timezones.map((i, index) => {

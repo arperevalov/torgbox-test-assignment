@@ -11,7 +11,7 @@
         font-family: 'Inter';
         background-color: $selectBgColor;
         border-radius: 4px;
-        border: none;
+        // border: none;
         padding: 8px;
     }
 
@@ -21,6 +21,7 @@
         left: 0;
         top: 0;
         background-color: $selectBgColor;
+        border: 1px solid $selectBorderColor;
         border-radius: 4px;
         display: none;
         cursor: pointer;
@@ -37,6 +38,14 @@
             text-overflow: clip;
             overflow: hidden;
             white-space: nowrap;
+
+            &.active {
+                background-color: $selectActiveBgColor;
+
+                &::before {
+                    background-color: $selectActiveBgColor;
+                }
+            }
 
             &::before {
                 content: '▼';
@@ -62,7 +71,7 @@
             font-size: 14px;
             list-style: none;
             border-radius: 4px;
-            border: 1px solid $selectBgColor;
+            border: 1px solid $selectBorderColor;
             display: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 

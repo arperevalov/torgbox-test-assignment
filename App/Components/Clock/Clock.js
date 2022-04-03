@@ -1,6 +1,6 @@
 import React from "react";
-import DigitalClock from "./DigitalClock/DigitalClock";
-import AnalogClock from './AnalogClock/AnalogClock';
+import DigitalClock from "./DigitalClock";
+import AnalogClock from './AnalogClock';
 import Select from "../Select";
 import Preloader from "../Preloader";
 

@@ -1,6 +1,7 @@
 import React from "react";
-import secondsArrow from './../../../../src/img/secondsArrow.svg';
-import clockPin from './../../../../src/img/clockPin.svg'
+import secondsArrow from './../../../src/img/secondsArrow.svg';
+import clockPin from './../../../src/img/clockPin.svg';
+import logo from './../../../src/img/logo.svg';
 
 const AnalogClock = props => {
     
@@ -20,6 +21,8 @@ const AnalogClock = props => {
         </div>
 
         <img src={clockPin} className="pin"/>
+
+        <img src={logo} className="logo"/>
 
         <div className="segment first"></div>
         <div className="segment second"></div>

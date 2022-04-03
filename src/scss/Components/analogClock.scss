@@ -127,7 +127,6 @@
     }
 
     .pin {
-        display: block;
         width: 6% * $clockSizeMultiplier;
         height: 6% * $clockSizeMultiplier;
         position: absolute;
@@ -135,6 +134,17 @@
         right: 0;
         top: 0;
         bottom: 0;
+        margin: auto;
+        z-index: 100;
+    }
+
+    .logo {
+        width: 14% * $clockSizeMultiplier;
+        height: 14% * $clockSizeMultiplier;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 40px * $clockSizeMultiplier;
         margin: auto;
         z-index: 100;
     }
