@@ -1,5 +1,4 @@
 const UPDATE_TIMEZONES = 'UPDATE_TIMEZONES',
-UPDATE_TIME = 'UPDATE_TIME',
 SET_FETCH = 'SET_FETCH'
 
 const DefaultState = {
@@ -16,11 +15,6 @@ const ClockReducer = (state = DefaultState, action) => {
                 timezones: action.timezones
             }
             break;
-        case UPDATE_TIME: 
-            return {
-                ...state,
-                time: action.time
-            }
         case SET_FETCH:
             return {
                 ...state,
@@ -34,7 +28,6 @@ const ClockReducer = (state = DefaultState, action) => {
 }
 
 export const updateTimezones = (timezones) => ({type: UPDATE_TIMEZONES, timezones});
-export const updateTime = (time) => ({type: UPDATE_TIME, time});
 export const setFetch = (fetchState) => ({type: SET_FETCH, fetchState});
 
 export default ClockReducer;

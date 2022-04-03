@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateTimezones, updateTime, setFetch } from './../../Redux/ClockReducer';
+import Preloader from "../Preloader";
+import { updateTimezones, setFetch } from './../../Redux/ClockReducer';
 import Clock from './Clock'
 
 class ClockAPI extends React.Component {
@@ -33,6 +34,7 @@ class ClockAPI extends React.Component {
 
     render() {
         return <div className="clock-container">
+        {this.props.isFetching ? <Preloader/> : ''}
         { Array.from({length: this.props.clockQuantity}, (i, index) => <Clock key={index} timezones={this.props.timezones} />) }
         </div>
     }
