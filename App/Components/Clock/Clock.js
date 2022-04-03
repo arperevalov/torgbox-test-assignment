@@ -8,51 +8,37 @@ class Clock extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            timezone: null,
+            currentTimezone: undefined,
         }
     }
 
-    // getTimeFromUTC(currentTimezone) {
-    //     const currentLocalTime = new Date()
-    //     const currentUTCTime = new Date(
-    //         currentLocalTime.getFullYear(),
-    //         currentLocalTime.getUTCMonth(),
-    //         currentLocalTime.getUTCDay(),
-    //         currentLocalTime.getUTCHours()+currentTimezone,
-    //         currentLocalTime.getUTCMinutes(),
-    //         currentLocalTime.getUTCSeconds())
-    //     return currentUTCTime
-    // }
-
-    // updateTime () {
-    //     setInterval(() => {
-    //         this.setState({time: this.getTimeFromUTC(this.state.timezone)})
-    //     }, 1000);
-    // }
-
     changeTimezone = (inputTimezone) => {
         inputTimezone = parseInt(inputTimezone)
-        this.setState({timezone: inputTimezone})
+        this.setState({currentTimezone: inputTimezone})
     }
 
     componentDidUpdate() {
-        if (this.state.timezone === null && this.props.timezones.length !== 0) {
-            this.setState({timezone: this.props.timezones[0].timezone})
+        if (this.state.currentTimezone === undefined && this.props.timezones.length !== 0) {
+            this.setState({currentTimezone: this.props.timezones[0].timezone})
         } 
     }
 
     render() {
-        if (this.props.time === null) {
+        if (this.props.time === undefined) {
             return <Preloader/>
         }
 
-        let combinedTime = `${this.props.time.getHours() + this.state.timezone}:${this.props.time.getMinutes()}:${this.props.time.getSeconds()}`
-        // return `${this.props.time.getHours() + this.state.timezone}:${this.props.time.getMinutes()}:${this.props.time.getSeconds()}`
+        const timezoneTime = new Date(
+            this.props.time.getFullYear(),
+            this.props.time.getUTCMonth(),
+            this.props.time.getUTCDay(),
+            this.props.time.getUTCHours()+this.state.currentTimezone,
+            this.props.time.getUTCMinutes(),
+            this.props.time.getUTCSeconds())
 
         return <div className="clock">
-            {`${this.props.time.getHours() + this.state.timezone}:${this.props.time.getMinutes()}:${this.props.time.getSeconds()}`}
-            {/* <AnalogClock time={this.state.time}/>
-            <DigitalClock time={this.state.time}/> */}
+            <AnalogClock time={timezoneTime}/>
+            <DigitalClock time={timezoneTime}/>
             <Select timezones={this.props.timezones} changeTimezone={this.changeTimezone} timezone={this.state.timezone}/>
         </div>
     }

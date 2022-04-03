@@ -6,21 +6,9 @@ import Clock from './Clock'
 
 class ClockAPI extends React.Component {
 
-    getTimeFromUTC(currentTimezone) {
-        const currentLocalTime = new Date()
-        const currentUTCTime = new Date(
-            currentLocalTime.getFullYear(),
-            currentLocalTime.getUTCMonth(),
-            currentLocalTime.getUTCDay(),
-            currentLocalTime.getUTCHours()+currentTimezone,
-            currentLocalTime.getUTCMinutes(),
-            currentLocalTime.getUTCSeconds())
-        return currentUTCTime
-    }
-
     updateTime () {
         setInterval(() => {
-            this.props.setTime(this.getTimeFromUTC(0))
+            this.props.setTime(new Date())
         }, 1000);
     }
 
@@ -31,7 +19,7 @@ class ClockAPI extends React.Component {
             .then(r => r.json(), 
             err => {
                 this.props.updateTimezones([{
-                    "timezone": "0",
+                    "timezone": 0,
                     "name": "UTC±0:00"
                   },])
                 this.props.setFetch(false)
@@ -51,7 +39,7 @@ class ClockAPI extends React.Component {
     }
 
     componentDidUpdate () {
-        if (this.props.defaultTimezone !== null && !this.props.clockWorking) {
+        if (this.props.defaultTimezone !== undefined && !this.props.clockWorking) {
             this.updateTime()
             this.props.setWorking()
         }

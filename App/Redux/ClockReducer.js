@@ -7,9 +7,9 @@ const DefaultState = {
     quantity: 2,
     timezones: [],
     isFetching: false,
-    time: null,
+    time: undefined,
     clockWorking: false,
-    defaultTimezone: null
+    defaultTimezone: undefined
 }
 
 const ClockReducer = (state = DefaultState, action) => {

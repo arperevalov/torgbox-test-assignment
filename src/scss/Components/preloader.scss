@@ -5,7 +5,7 @@
     background-color: $preloaderColor;
     height: 2px;
 
-    animation: preloader 3s ease 1s infinite;
+    animation: preloader 1s ease 0.5s infinite;
 }
 
 @keyframes preloader {
