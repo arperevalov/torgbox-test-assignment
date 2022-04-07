@@ -1,47 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DigitalClock from "./DigitalClock";
 import AnalogClock from './AnalogClock';
 import Select from "../Select";
 import Preloader from "../Preloader";
 
-class Clock extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            currentTimezone: undefined,
-        }
-    }
+const Clock = props => {
+    const [currentTimezone, setCurrentTimezone] = useState(undefined)
 
-    changeTimezone = (inputTimezone) => {
+    const changeTimezone = (inputTimezone) => {
         inputTimezone = parseInt(inputTimezone)
-        this.setState({currentTimezone: inputTimezone})
+        setCurrentTimezone(inputTimezone)
     }
 
-    componentDidUpdate() {
-        if (this.state.currentTimezone === undefined && this.props.timezones.length !== 0) {
-            this.setState({currentTimezone: this.props.timezones[0].timezone})
+    useEffect(()=>{
+        if (currentTimezone === undefined && props.timezones.length !== 0) {
+            setCurrentTimezone(props.timezones[0].timezone)
         } 
+    }, [props.timezones])
+
+    if (props.time === undefined) {
+        return <Preloader/>
     }
 
-    render() {
-        if (this.props.time === undefined) {
-            return <Preloader/>
-        }
+    const timezoneTime = new Date(
+        props.time.getFullYear(),
+        props.time.getUTCMonth(),
+        props.time.getUTCDay(),
+        props.time.getUTCHours()+currentTimezone,
+        props.time.getUTCMinutes(),
+        props.time.getUTCSeconds())
 
-        const timezoneTime = new Date(
-            this.props.time.getFullYear(),
-            this.props.time.getUTCMonth(),
-            this.props.time.getUTCDay(),
-            this.props.time.getUTCHours()+this.state.currentTimezone,
-            this.props.time.getUTCMinutes(),
-            this.props.time.getUTCSeconds())
-
-        return <div className="clock">
+    return <div className="clock">
             <AnalogClock time={timezoneTime}/>
             <DigitalClock time={timezoneTime}/>
-            <Select timezones={this.props.timezones} changeTimezone={this.changeTimezone} timezone={this.state.timezone}/>
+            <Select timezones={props.timezones} changeTimezone={changeTimezone} timezone={currentTimezone}/>
         </div>
-    }
 }
 
 export default Clock

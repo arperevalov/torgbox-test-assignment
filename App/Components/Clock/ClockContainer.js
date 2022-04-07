@@ -1,28 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Preloader from "../Preloader";
 import { updateTimezones, setFetch, setTime, setWorking } from './../../Redux/ClockReducer';
 import Clock from './Clock'
 
-class ClockAPI extends React.Component {
+const ClockAPI = props => {
 
-    updateTime () {
+    const updateTime = () => {
         setInterval(() => {
-            this.props.setTime(new Date())
+            props.setTime(new Date())
         }, 1000);
     }
 
-    componentDidMount () {
-        if (this.props.timezones.length === 0) {
-            this.props.setFetch(true)
+    useEffect(()=>{
+        if (props.timezones.length === 0) {
+            props.setFetch(true)
             fetch('./../src/json/timezones.json')
             .then(r => r.json(), 
             err => {
-                this.props.updateTimezones([{
+                props.updateTimezones([{
                     "timezone": 0,
                     "name": "UTC±0:00"
                   },])
-                this.props.setFetch(false)
+                props.setFetch(false)
                 throw new Error(err)
             })
             .then(r => {
@@ -32,25 +32,23 @@ class ClockAPI extends React.Component {
                         timezone: parseInt(i.timezone)
                     }
                 })
-                this.props.updateTimezones([...arr])
-                this.props.setFetch(false)
+                props.updateTimezones([...arr])
+                props.setFetch(false)
             })
         }
-    }
+    },[])
 
-    componentDidUpdate () {
-        if (this.props.defaultTimezone !== undefined && !this.props.clockWorking) {
-            this.updateTime()
-            this.props.setWorking()
+    useEffect(()=>{
+        if (props.defaultTimezone !== undefined && !props.clockWorking) {
+            updateTime()
+            props.setWorking()
         }
-    }
+    },[props.defaultTimezone, props.clockWorking])
 
-    render() {
-        return <div className="clock-container">
-        {this.props.isFetching ? <Preloader/> : ''}
-        { Array.from({length: this.props.clockQuantity}, (i, index) => <Clock key={index} timezones={this.props.timezones} time={this.props.time} defaultTimezone={this.props.defaultTimezone} />) }
-        </div>
-    }
+    return <div className="clock-container">
+    {props.isFetching ? <Preloader/> : ''}
+    { Array.from({length: props.clockQuantity}, (i, index) => <Clock key={index} timezones={props.timezones} time={props.time} defaultTimezone={props.defaultTimezone} />) }
+    </div>
 }
 
 const mapStateToProps = store => {
